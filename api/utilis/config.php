@@ -8,11 +8,10 @@ $password = 'root';
 $host = 'localhost';
 $database = 'calendar';
 ///////
-
 $smtp_host = "smtp.gmail.com";
 $smtp_port = 25;
-$smtp_login = "Pika.mdr.noreply@gmail.com";
-$smtp_password = "DawidGlupiJez3215";
+$smtp_login = "email@gmail.com";
+$smtp_password = "password";
 
 
 function make_con() {
