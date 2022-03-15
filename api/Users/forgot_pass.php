@@ -50,7 +50,7 @@ if (check_structure()) {
             $mail->Username   = $smtp_login;            
             $mail->Password   = $smtp_password ;
             $mail->setFrom($smtp_login);          
-            $mail->addAddress('ratajx1@gmail.com'); 
+            $mail->addAddress($row['email']); 
             $mail->isHTML(true);                                  
             $mail->Subject = 'Hasło zostało zresetowane!';
             $mail->Body    = 'Nowe haslo dla konta o nazwie <b>' . $row['Name'] . '</b> to <b>' . $pass .'</b>.';
