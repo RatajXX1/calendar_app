@@ -97,7 +97,7 @@
                         </div>
 
                     </div>
-                    <div v-on:click='show_mode' class="itemt_type_select">
+                    <div v-on:click='show_mode' ref="text_mode_item_bac_div_click" class="itemt_type_select">
                         <a ref="text_mode_item">{{text_mode}}</a>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
                             <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
@@ -323,10 +323,13 @@ export default {
             this.start_day = new Date(year, month, day)
             this.hide_all()
             if (vm.selected_time.getTime() > this.$refs.calnedar_com_2.selected_time.getTime()) {
+                if (this.$refs.text_mode_item_bac_div_click.style.display == 'none') this.$refs.text_mode_item_bac_div_click.style.display = ''
                 this.$refs.calnedar_com_2.set_selected(new Date(time))
                 this.end_day = new Date(time.getFullYear(), time.getMonth(), time.getDate())
                 this.$refs.date_intput_end.value = day_name[time.getDay()] + ", " + day.toString() + " " + month_name[time.getMonth()]
                 if (!this.mobile_view )  this.$refs.date_intput_end.parentNode.style.width = (getTextWidth(this.$refs.date_intput_start.value, 'regular 17pt Avenir') * 1.6) + 'px'
+            } else {
+                if (this.$refs.text_mode_item_bac_div_click.style.display == 'none') this.$refs.text_mode_item_bac_div_click.style.display = ''
             }
             this.check_hour(true)
         },
@@ -370,10 +373,16 @@ export default {
             if (!this.mobile_view ) this.$refs.date_intput_end.parentNode.style.width = (getTextWidth(this.$refs.date_intput_end.value, 'regular 17pt Avenir') * 1.6) + 'px'
             this.hide_all()
             if (vm.selected_time.getTime() < this.$refs.calnedar_com_1.selected_time.getTime()) {
+                if (this.$refs.text_mode_item_bac_div_click.style.display == 'none') this.$refs.text_mode_item_bac_div_click.style.display = ''
                 this.$refs.calnedar_com_1.set_selected(new Date(time))
                 this.start_day = new Date(time.getFullYear(), time.getMonth(), time.getDate())
                 this.$refs.date_intput_start.value = day_name[time.getDay()] + ", " + day.toString() + " " + month_name[time.getMonth()]
                 if (!this.mobile_view ) this.$refs.date_intput_start.parentNode.style.width = (getTextWidth(this.$refs.date_intput_start.value, 'regular 17pt Avenir') * 1.6) + 'px'
+            } else if (vm.selected_time.getTime() > this.$refs.calnedar_com_1.selected_time.getTime()) {
+                this.$refs.text_mode_item_bac_div_click.style.display = 'none'
+                this.set_commnand(1)
+            } else {
+                if (this.$refs.text_mode_item_bac_div_click.style.display == 'none') this.$refs.text_mode_item_bac_div_click.style.display = ''
             }
             this.check_hour(true)
         },
@@ -388,7 +397,7 @@ export default {
             this.hide_all()
             if (id == 1) {
                 this.number_1 = 'block'
-                this.$refs.end_hour.parentNode.style.display = 'none'
+                if (this.mobile_view) this.$refs.end_hour.parentNode.style.display = 'none'
             }
             else if (id == 2) this.number_2 = 'block'
             else if (id == 3) this.date_1 = 'block'

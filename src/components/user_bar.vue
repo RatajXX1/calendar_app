@@ -284,7 +284,7 @@ export default {
     .bar_main_add_event svg {
         display: block;
         position: absolute;
-        width: fit-content;
+        width: 50px;
         height: 100%;
         top: 50%;
         left: 0px;

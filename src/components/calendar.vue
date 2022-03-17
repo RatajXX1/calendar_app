@@ -386,7 +386,16 @@ export default ({
            
             // if (!utlis.is_in_week(day_start, this.time_week) && mode < 2) return
             if (mode == 5) {
-                for(let i=0; i < 7; i++) {
+                let start_i = 0
+                if (utlis.is_in_week(day_start, this.time_week)) {
+                    start_i = day_start.getDay()
+                    let start = time_to_number( time_hour_start , time_minute_start ) 
+                    let end = time_to_number(  time_hour_end, time_minute_end) - time_to_number( time_hour_start ,time_minute_start)
+                    this.day_7.push({ID: this.unique ,RID: rid , text: title, time_start: start/ 24, time_end: end + (  ( end - end % 100) / 100 ) * 2, colors: color_id   })
+                    this.unique += 1
+                    this.segregate_column(0,start/24, end + (  ( end - end % 100) / 100 ) * 2)
+                }
+                for(let i=start_i; i < 7; i++) {
                     let start = time_to_number( time_hour_start , time_minute_start ) 
                     let end = time_to_number(  time_hour_end, time_minute_end) - time_to_number( time_hour_start ,time_minute_start)
                     switch (i) {
