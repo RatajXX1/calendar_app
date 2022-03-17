@@ -19,7 +19,7 @@ export default {
     return {
       login_page: true,
       user_info: [],
-      url_path: window.location.origin + window.location.pathname // 'http://localhost:8090/back/' 
+      url_path: 'http://localhost:8090/' 
     }
   },
   methods: {
