@@ -428,6 +428,11 @@ export default ({
             }
             else if (day_start.getTime() < day_end.getTime()) 
             {
+		if (!utlis.is_in_week(day_start, this.time_week)) {
+			day_start = new Date(this.time_week)
+			var dayed_start = day_start.getDay() || 7
+			if (dayed_start !== 1) day_start.setHours(-24 * (dayed_start - 1))
+		}
                 this.multi_days.push({text: title, 
                                     time_start: time_to_text(time_hour_start, time_minute_start),
                                     time_end:time_to_text(time_hour_end, time_minute_end),
